@@ -33,7 +33,8 @@ entry in my =~/.clojure/deps.edn= with clj-new and this repo.
    {:new {:extra-deps {seancorfield/clj-new {:git/url "https://github.com/seancorfield/clj-new.git"
                                              :sha "306f66ffc58611a6a0594b5ac251f7befe5c4777"}
                        noonian/clojure-project-templates
-                       {:local/root "../projects/clojure-project-templates"}}
+                       {:git/url "https://github.com/noonian/clojure-project-templates.git"
+                        :sha "e47128620d2083457101d78091412841b9063b9e"}}
           :main-opts ["-m" "clj-new.create"]}}
 #+END_SRC
 
