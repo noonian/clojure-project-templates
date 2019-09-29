@@ -1,0 +1,86 @@
+#+TITLE: clojure-project-templates
+#+STARTUP: indent
+
+A collection clj-new templates for initial project setup. The
+generated projects are intended to be customized and are relatively
+minimal.
+
+This is a new project and some of the templates may be lacking
+readme's and other niceties.
+
+* Provided templates
+
+** integrant-system
+
+A minimal project configured with integrant and integrant-repl.
+
+** pathom-api
+
+A minimal pathom api with a single resolver (includes everything in
+the integrant-system template). Supports exploration via
+[[https://wilkerlucio.github.io/oge/]].
+
+* Usage
+
+Please see [[https://github.com/seancorfield/clj-new][seancorfield/clj-new]] for general instructions on
+configuring clj-new as a clojure cli alias.
+
+To use these templates, you need this repo on the classpath. I use an
+entry in my =~/.clojure/deps.edn= with clj-new and this repo.
+
+#+BEGIN_SRC clojure
+  :aliases
+   {:new {:extra-deps {seancorfield/clj-new {:git/url "https://github.com/seancorfield/clj-new.git"
+                                             :sha "306f66ffc58611a6a0594b5ac251f7befe5c4777"}
+                       noonian/clojure-project-templates
+                       {:local/root "../projects/clojure-project-templates"}}
+          :main-opts ["-m" "clj-new.create"]}}
+#+END_SRC
+
+With that configuration, generating a project looks like this.
+
+#+BEGIN_SRC sh
+  clojure -A:new template-name myname/project.appname
+#+END_SRC
+
+Please note that unlike the behavior of the built-in templates in
+clj-new, these templates do not generate directories and namespaces
+that include the project group name. This is not considered a best
+practice, but for non-library applications and especially monorepos,
+I've found it useful to be able to name things as =project.api=,
+=project.frontend=, etc. without the extra clutter in the namespace.
+
+You still need to provide a qualified symbol to clj-new to satisfy
+it's validation requirements.
+
+#+BEGIN_SRC sh
+  clojure -A:new integrant-system myname/demo.integrant-system
+#+END_SRC
+
+Will result in a project directory called =demo.integrant-system= with
+namespace names like =demo.integrant-system.system=, not
+=myname.demo.integrant-system.system=.
+
+* License
+
+MIT License
+
+Copyright © 2019 Jedidiah Clinger
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
