@@ -4,7 +4,7 @@
  {:resolvers #ig/ref :{{root-ns}}.eql/pathom-resolvers}
 
  :{{root-ns}}.routes/ring-handler
- {:parser #ig/ref :demo.pathom-api.eql/pathom-parser}
+ {:parser #ig/ref :{{root-ns}}.eql/pathom-parser}
 
  :{{root-ns}}.jetty/http-server
  {:port 7000
